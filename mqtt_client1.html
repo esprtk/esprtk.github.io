@@ -135,9 +135,6 @@ h1 {
         <option value="1">1 Pause</option>
         <option value="2">2 Continue</option>
 </select>
-
-
-
 <br><br>
 <select class="so_cang" id="so_cang_max_c">
 
@@ -280,93 +277,6 @@ h1 {
 
 
 
-
-
-<br><br>
-<select class="set_tam_de" id="tam_de_c">
-
-
-        <option value="-1"> TẤM DÈ??</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28">28</option>
-        <option value="29">29</option>
-
-        <option value="30">30</option>
-        <option value="31">31</option>
-        <option value="32">32</option>
-        <option value="33">33</option>
-        <option value="34">34</option>
-        <option value="35">35</option>
-        <option value="36">36</option>
-        <option value="37">37</option>
-        <option value="38">38</option>
-        <option value="39">39</option>
-
-        <option value="40">40</option>
-        <option value="41">41</option>
-        <option value="42">42</option>
-        <option value="43">43</option>
-        <option value="44">44</option>
-        <option value="45">45</option>
-        <option value="46">46</option>
-        <option value="47">47</option>
-        <option value="48">48</option>
-        <option value="49">49</option>
-
-
-
-
-</select>
-
-
-
-
-
-
-<br><br>
-
-<select class="set_chinh_nghieng" id="chinh_nghieng_c" >
-        <option value="-1">Chỉnh nghiêng ??</option>
-        <option value="0">NO</option>
-        <option value="1">Nghiêng 1 trục</option>
-        <option value="2">Nghiêng 2 trục</option>
-        <option value="3">Nghiêng 3 trục</option>
-</select>
-
-
-
-
-
-
 </body>
 
 
@@ -383,7 +293,7 @@ h1 {
 
 <script>
     const clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
-    const host = 'ws://broker.hivemq.com:8083/mqtt'
+    const host = 'ws://broker.hivemq.com:8000/mqtt'
     const options = {
       keepalive: 60,
       clientId: clientId,
@@ -433,8 +343,6 @@ var old_so_cang_max = -1000;
 var old_enable_reset_er = -1000;
 var old_max_rpm = -1000;
 var old_min_rpm = -1000;
-var old_tam_de= -1000;
-var old_chinh_nghieng = -1000;
 
 
          function refreshIFrame() {
@@ -447,10 +355,6 @@ let enable_reset_er =  parseInt(document.getElementById("enable_reset_er_c").val
 let max_rpm =  parseInt(document.getElementById("max_rpm_c").value);
 let min_rpm =  parseInt(document.getElementById("min_rpm_c").value);
 
-
-
-let tam_de =  parseInt(document.getElementById("tam_de_c").value);
-let chinh_nghieng =  parseInt(document.getElementById("chinh_nghieng_c").value);
 
 
 if(min_rpm > max_rpm){
@@ -474,11 +378,8 @@ if( mode_control != old_mode_control
 || old_enable_reset_er != enable_reset_er
 || old_max_rpm != max_rpm
 || old_min_rpm != min_rpm
-|| old_tam_de!= tam_de
-|| old_chinh_nghieng != chinh_nghieng
 
  ){
-
            console.log("Sent mg!");
     old_so_cang_max = so_cang_max ;
     old_mode_control = mode_control ;
@@ -492,8 +393,6 @@ old_min_rpm = min_rpm;
                    +'" ,"max_rpm_c":"'+max_rpm
                    +'" ,"mode_run_c":"'+mode_control
                    +'" ,"so_cang_max":"'+so_cang_max
-                   +'" ,"tam_de":"'+tam_de
-                   +'" ,"nghieng":"'+chinh_nghieng
                    +'"  }}', { qos: 1, retain: false })
 
 }
